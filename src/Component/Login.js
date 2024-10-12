@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './Login.css';
 
-
 const Login = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -20,9 +19,9 @@ const Login = ({ onLogin }) => {
   };
 
   return (
-    <div className="login-container" >
+    <div className="login-container">
       <h2>Login</h2>
-      <div >
+      <div>
         <input
           type="text"
           placeholder="Username"
@@ -31,8 +30,8 @@ const Login = ({ onLogin }) => {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
-      <br></br>
-      <div >
+      <br />
+      <div>
         <input
           type="password"
           placeholder="Password"
@@ -41,8 +40,7 @@ const Login = ({ onLogin }) => {
           onChange={(e) => setPassword(e.target.value)}
         />
       </div>
-      <br>
-      </br>
+      <br />
       <button className='login-button' onClick={handleLogin}>Login</button>
       {errorMessage && <p className="error">{errorMessage}</p>}
     </div>

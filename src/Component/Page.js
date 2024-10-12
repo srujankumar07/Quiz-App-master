@@ -4,49 +4,46 @@ import QuizResult from './QuizResult';
 import Login from './Login';
 
 function Page() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Auth state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [clickedOption, setClickedOption] = useState(0);
   const [showResult, setShowResult] = useState(false);
   const [timeLeft, setTimeLeft] = useState(10);
-  const [quizStarted, setQuizStarted] = useState(false); // Track if quiz has started
+  const [quizStarted, setQuizStarted] = useState(false);
 
-  // Function to handle authentication
   const handleLogin = (isLoggedIn) => {
     setIsAuthenticated(isLoggedIn);
     if (isLoggedIn) {
-      setQuizStarted(true); // Start quiz only after login
+      setQuizStarted(true);
     }
   };
 
-  // Countdown timer, starts only when the quiz is started
   useEffect(() => {
     if (quizStarted && timeLeft > 0) {
-      const timer = setTimeout(() => setTimeLeft(timeLeft - 1), 1000);
-      return () => clearTimeout(timer); // Clear timer when the component unmounts or question changes
+      const timer = setTimeout(() => setTimeLeft((prevTime) => prevTime - 1), 1000);
+      return () => clearTimeout(timer);
     } else if (timeLeft === 0) {
-      changeQuestion(); // Automatically move to the next question when time runs out
+      changeQuestion();
     }
   }, [quizStarted, timeLeft]);
 
-  // Move to the next question
   const changeQuestion = () => {
     updateScore();
 
     if (currentQuestion < QuestionData.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setClickedOption(0);
-      setTimeLeft(10); // Reset timer for the next question
+      setTimeLeft(10);
     } else {
       setShowResult(true);
-      setQuizStarted(false); // Stop quiz after last question
+      setQuizStarted(false);
     }
   };
 
   const updateScore = () => {
     if (clickedOption === QuestionData[currentQuestion].answer) {
-      setScore(score + 1);
+      setScore((prevScore) => prevScore + 1);
     }
   };
 
@@ -55,8 +52,8 @@ function Page() {
     setCurrentQuestion(0);
     setClickedOption(0);
     setScore(0);
-    setTimeLeft(10); // Reset timer
-    setQuizStarted(true); // Restart quiz
+    setTimeLeft(10);
+    setQuizStarted(true);
   };
 
   if (!isAuthenticated) {
@@ -76,7 +73,6 @@ function Page() {
               <span id="question-txt">{QuestionData[currentQuestion].question}</span>
             </div>
 
-            {/* Timer display */}
             <div className="timer">
               <p>Time left: {timeLeft} seconds</p>
             </div>
