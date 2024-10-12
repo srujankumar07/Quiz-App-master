@@ -1,0 +1,36 @@
+.login-container{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 200px;
+}
+
+
+h2 {
+  font-size: 50px; /* Size of the font */
+  color: #2f4f4f; /* Text color */
+  font-weight: bold; /* Make it bold */
+  text-align: center; /* Center the text */
+  margin-bottom: 20px; /* Space below the heading */
+  text-transform: uppercase; /* Transform text to uppercase */
+}
+
+.input-fields{
+    width: 50%;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+
+}
+
+
+
+.login-button{
+  background-color: #0099cc;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
